@@ -7,7 +7,7 @@ maintainer: "xen-api@lists.xen.org"
 build: [[ "dune" "build" "-p" name ]]
 depends: [
   "dune" {>= "1.4"}
-  "ocaml" {>= "4.00.1"}
+  "ocaml" {>= "4.00.1" & < "5.0.0"}
   "cstruct" {>= "1.0.1"}
   "ounit" {with-test}
   "odoc" {with-doc}
