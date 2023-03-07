@@ -11,7 +11,10 @@ install: [
   [make "install"]
 ]
 remove: [["ocamlfind" "remove" "curses"]]
-depends: ["ocaml" "ocamlfind"]
+depends: [
+  "ocaml" {< "5.0.0"}
+  "ocamlfind"
+  ]
 depexts: [
   ["libncurses-dev"] {os-family = "debian"}
   ["ncurses"] {os = "win32" & os-distribution = "cygwinports"}
