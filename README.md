@@ -4,7 +4,7 @@
 
 Its deprecation was announced in [August 2021](https://fdopen.github.io/opam-repository-mingw/2021/02/26/repo-discontinued/) and it has received no updates since November 2022 in [696c4b2](https://github.com/fdopen/opam-repository-mingw/commit/696c4b27488b4b0d3ec3929dbe65565cb91764a1).
 
-OCaml's [setup-ocaml](https://github.com/ocaml/setup-ocaml) GitHub Action as well as other CI systems are still using [fdopen/opam-repository-mingw](https://github.com/fdopen/opam-repository-mingw) with [ocaml/opam-repository](https://github.com/ocaml/opam-repository) added to switch selections to provide newer packages. However, this is problematic when new releases require the constraints of existing packages to be updated.
+OCaml's [setup-ocaml](https://github.com/ocaml/setup-ocaml) GitHub Action as well as other CI systems were still using [fdopen/opam-repository-mingw](https://github.com/fdopen/opam-repository-mingw) with [ocaml/opam-repository](https://github.com/ocaml/opam-repository) added to switch selections to provide newer packages. However, this was problematic when new releases require the constraints of existing packages to be updated.
 
 ## Updates
 
