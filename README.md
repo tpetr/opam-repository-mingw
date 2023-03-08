@@ -1,74 +1,19 @@
-# opam mingw repository
+# opam-repository-mingw
 
-An opam repository for windows - including an experimental build of opam
-for windows (of course, you still need cygwin for nearly everything:
-a shell interpreter to run configure scripts, git, rsync, ...)
+[OCaml for Windows](https://fdopen.github.io/opam-repository-mingw/) was a fork of OCaml providing support for the mingw-w64 and MSVC ports of OCaml maintained by [@fdopen](https://github.com/fdopen).
 
-## Discontinuation
+Its deprecation was announced in [August 2021](https://fdopen.github.io/opam-repository-mingw/2021/02/26/repo-discontinued/) and it has received no updates since November 2022 in [696c4b2](https://github.com/fdopen/opam-repository-mingw/commit/696c4b27488b4b0d3ec3929dbe65565cb91764a1).
 
-This repo will soon be
-[discontinued](https://fdopen.github.io/opam-repository-mingw/2021/02/26/repo-discontinued/).
+OCaml's [setup-ocaml](https://github.com/ocaml/setup-ocaml) GitHub Action as well as other CI systems are still using [fdopen/opam-repository-mingw](https://github.com/fdopen/opam-repository-mingw) with [ocaml/opam-repository](https://github.com/ocaml/opam-repository) added to switch selections to provide newer packages. However, this is problematic when new releases require the constraints of existing packages to be updated.
 
-## Homepage
+## Updates
 
-There is now a small homepage with installation instructions and usage
-information: https://fdopen.github.io/opam-repository-mingw/ - and a
-[graphical installer](https://fdopen.github.io/opam-repository-mingw/installation/) that
-automates the steps listed below.
+This repository adds packages for OCaml 4.14.1 (released 19 Dec, 2022) and contains updates to _existing_ packages only to allow upstream opam-repository to be safely used, as constraints updated to deal with _new_ releases of packages are copied back to this repository.
 
-## Esy
+All new releases should be made to opam-repository only. This repository will only be periodically updated with constraint changes made in opam-repository. Issues and pull requests towards this goal are warmly welcomed!
 
-[Esy](https://esy.sh/) also supports Windows. If you are not already
-familar with opam from Linux / OS X and don't want to change your
-habits, give it a try first.
+## Sunset
 
-## Summary
+[opam 2.2](https://github.com/ocaml/opam) offers full support for native Windows development. As part of the development of opam 2.2, opam-repository's compiler packages will be updated to enable native Windows opam switches without needing this repository.
 
-### Download
-
-* [32-bit](https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam32.tar.xz)
-* [64-bit](https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz)
-
-The archives contain native versions of opam, flexdll and aspcud. They
-are all not linked against cygwin1.dll, so you can use them with
-either the 32-bit or 64-bit version of cygwin.
-
-
-### Installation
-
-* First install [cygwin](https://cygwin.com/) and a few additionals
-  packages: rsync, patch, diffutils, curl, make, unzip, git, m4, perl,
-  and of course mingw64-i686-gcc-core and/or mingw64-x86_64-gcc-core.
-
-* If your logon name contains whitespace characters (e.g. 'Firstname
-  Lastname') or any other character that would require quoting inside
-  a unix shell or cmd.exe, follow the instructions at
-  https://www.cygwin.com/faq.html#faq.setup.name-with-space
-
-* Then proceed inside a cygwin shell:
-
-```bash
-$ tar -xf 'opam32.tar.xz' # or tar -xf 'opam64.tar.xz'
-$ bash opam32/install.sh  # --prefix /usr/foo, the default prefix is /usr/local
-                          # maybe you have to add /usr/local/bin to your PATH
-$ opam init default "https://github.com/fdopen/opam-repository-mingw.git#opam2" -c "ocaml-variants.4.07.1+mingw32" --disable-sandboxing
-# or, if you prefer the 64-bit version - 'opam switch -a' will list other supported versions
-$ opam init default "https://github.com/fdopen/opam-repository-mingw.git#opam2" -c "ocaml-variants.4.07.1+mingw64" --disable-sandboxing
-$ eval $(ocaml-env cygwin)
-```
-
-## Things to remember
-
-* Add `/usr/i686-w64-mingw32/sys-root/mingw/bin` (or
-  `/usr/x86_64-w64-mingw32/sys-root/mingw/bin`) to your $PATH, if you
-  use
-  [depext-cygwinports](https://fdopen.github.io/opam-repository-mingw/depext-cygwin/)
-
-* Consider to use windows symlinks inside cygwin: `export
-  CYGWIN='winsymlinks:native'`. Otherwise ocamlbuild and many build
-  and test scripts will create symlinks, that are only understood by
-  cygwin tools, but not by the OCaml compiler and other native windows
-  programs.  (Usually only adminstrators are allowed to create
-  symlinks. But you can change the default settings, see
-  [this post](https://cygwin.com/ml/cygwin/2013-05/msg00405.html) for
-  details)
+Packages should then be fixed upstream in the usual way with new releases providing Windows support, with the gradual aim of allowing all Windows users to use ocaml/opam-repository only and cease using this repository completely.
