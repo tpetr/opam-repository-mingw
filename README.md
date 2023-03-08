@@ -12,6 +12,18 @@ This repository adds packages for OCaml 4.14.1 (released 19 Dec, 2022) and conta
 
 All new releases should be made to opam-repository only. This repository will only be periodically updated with constraint changes made in opam-repository. Issues and pull requests towards this goal are warmly welcomed!
 
+It is possible to use this repository with opam-repository. It's necessary to _add_ opam-repository to the repositories selections for the switches. It's important that opam-repository is at a _lower priority_ than opam-repository-mingw for existing packages, so it's better to use these lines in your `ocaml/setup-ocaml@v2` step than to issue `opam repo add` later:
+
+```
+uses: ocaml/setup-ocaml@v2
+with:
+  opam-repositories: |
+    opam-repository-mingw: https://github.com/ocaml-opam/opam-repository-mingw.git#sunset
+    default: https://github.com/ocaml/opam-repository.git
+```
+
+This is not the default in setup-ocaml at present because newer versions of packages may not contain required patches.
+
 ## What do I do when things are broken?
 
 Please open an issue in the [issue tracker](https://github.com/ocaml-opam/opam-repository-mingw/issues)!
