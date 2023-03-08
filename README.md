@@ -12,6 +12,19 @@ This repository adds packages for OCaml 4.14.1 (released 19 Dec, 2022) and conta
 
 All new releases should be made to opam-repository only. This repository will only be periodically updated with constraint changes made in opam-repository. Issues and pull requests towards this goal are warmly welcomed!
 
+## What do I do when things are broken?
+
+Please open an issue in the [issue tracker](https://github.com/ocaml-opam/opam-repository-mingw/issues)!
+
+If a version of a package isn't building, there are three possible remedies:
+
+- Previous versions of the package may have carried non-upstreamed patches in opam-repository-mingw. opam-repository's policy is not to carry such patches. In this case, the package actually doesn't work on Windows.
+  - opam-repository should be updated to have `os != "win32"` added to the `available` field for the package
+  - An issue on the package's upstream repo should be opened highlighting the need to upstream patches (or even a pull request with them!)
+  - The patches in opam-repository-mingw make changes which may not necessarily be accepted/acceptable upstream in their current form, so the issue may be a better starting point than simply taking a patch and opening a pull request for it (for example, the `utop` package contains patches which may require further work and review)
+- The package relies on environment changes in "OCaml for Windows". For example, the Zarith package works in "OCaml for Windows" because the compiler packages unconditionally set the `CC` environment variable. This change is both not particularly desirable change to upstream (it is _very_ confusing, for example, when working on the compiler itself) and also extremely difficult to upstream, so the fix here is instead to change the package's availability with `(os != "win32" | os-distribution = "cygwinports")` and constrain away OCaml 5 on Windows (`"ocaml" {< "5.0" | os != "win32"}`)
+- Package constraints on _existing packages_ need updating in ocaml-opam/opam-repository-mingw. For example, the release of ppxlib 0.29 required some existing packages to have upperbounds added.
+
 ## Sunset
 
 [opam 2.2](https://github.com/ocaml/opam) offers full support for native Windows development. As part of the development of opam 2.2, opam-repository's compiler packages will be updated to enable native Windows opam switches without needing this repository.
