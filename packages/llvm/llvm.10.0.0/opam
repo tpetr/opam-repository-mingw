@@ -19,9 +19,10 @@ depends: [
   "conf-llvm" {build & = version}
   "conf-python-2-7" {build}
   "conf-cmake" {build}
+  "conf-bash" {build}
 ]
 conflicts: [
-  "ocaml-option-nnp"
+  "base-nnp"
   "ocaml-option-nnpchecker"
 ]
 patches: [
