@@ -23,7 +23,7 @@ depends: [
   "camlzip" {>= "1.05"}
   "camlp4"
   "extlib"
-  "camomile"
+  "camomile" {< "2.0.0"}
 ]
 patches: "javalib-2.3.5.patch" {os = "win32"}
 synopsis:

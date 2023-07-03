@@ -29,6 +29,9 @@ extra-files: [
   ["META" "md5=df2fdae08d486c43311b0a7b8a9ca38c"]
   ["camlidl-camlidl107.patch" "md5=1f0688ca687b7c615b012d6b6476a72b"]
 ]
+conflicts: [
+  "ocaml-option-bytecode-only"
+]
 url {
   src:
     "https://github.com/xavierleroy/camlidl/archive/camlidl107.tar.gz"
