@@ -48,7 +48,6 @@ install: [
   ["mkdir" "-p" "%{lib}%/ocamlbuild"] { os = "win32" }
   ["install" "-m" "0644" "META" "%{lib}%/ocamlbuild"] { os = "win32" }
 ]
-dev-repo: "git+https://github.com/ocaml/ocamlbuild.git"
 url {
   src: "https://github.com/ocaml/ocamlbuild/archive/refs/tags/0.14.2.zip"
 }
